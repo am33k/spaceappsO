@@ -1,0 +1,31 @@
+/* src/App.css */
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  background-color: black;
+}
+
+canvas {
+  width: 100%;  /* Make sure the canvas takes the full width */
+  height: 100%; /* and the full height */
+}
+
+.App-header {
+  position: absolute;  /* Keep the header at the top */
+  top: 0;
+  width: 100%;
+  background-color: #282c34;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  z-index: 10; /* Ensure it's above the canvas */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: black;
+}
