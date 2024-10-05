@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Orrery</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="loading-screen">
+        <h1>NASA Project</h1>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    <h4 id="location-text">Toronto</h4> <!-- New Text Element -->
+</div>
+
+    </div>
+
+    <header>
+        <h1>Interactive Orrery</h1>
+        <nav>
+            <ul class="nav-tabs">
+                <li><a href="#data">Data</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#challenge">Challenge</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <h2>Welcome to our project</h2>
+            <div id="spline-container">
+                <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.28/build/spline-viewer.js"></script>
+                <spline-viewer url="https://prod.spline.design/B6P09pbWGcYGpuAt/scene.splinecode"></spline-viewer>
+            </div>
+            <h2>Explore Our Solar System</h2>
+            <p>Learn about celestial bodies through our interactive orrery!</p>
+            <button class="explore-btn" onclick="startExploration()">Start Exploring</button>
+        </section>
+
+        <section id="data">
+            <h2>Data</h2>
+            <p>Access real-time data from NASA and other sources to learn about celestial bodies.</p>
+        </section>
+
+        <section id="about">
+            <h2>About the Orrery</h2>
+            <p>This interactive orrery displays planets, asteroids, and comets, providing educational insights into our solar system.</p>
+        </section>
+
+        <section id="challenge">
+            <h2>Challenge</h2>
+            <p>Join us in exploring space and solving real-world challenges with our interactive tools.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Interactive Orrery. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Simulate loading for 3 seconds
+        window.onload = function() {
+            const progressBar = document.querySelector('.progress');
+            let width = 0;
+
+            const loadingInterval = setInterval(function() {
+                if (width >= 100) {
+                    clearInterval(loadingInterval);
+                    document.getElementById('loading-screen').style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Enable scrolling after loading
+                } else {
+                    width++;
+                    progressBar.style.width = width + '%';
+                }
+            }, 30); // Adjust time as needed
+        };
+
+        function startExploration() {
+            // Placeholder for exploration function
+            alert("Exploration feature coming soon!");
+        }
+    </script>
+</body>
+</html>
