@@ -1,0 +1,205 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif; /* Use your preferred font */
+    background-color: #000; /* Dark background */
+    color: #fff; /* White text */
+    overflow: hidden; /* Prevent scrolling during loading */
+}
+
+/* Loading Screen Styles */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+    color: #fff; /* White text */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    z-index: 1000; /* Ensure it's on top of everything */
+    overflow: hidden; /* Hide overflow while loading */
+}
+
+.spline-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevent overflow */
+    z-index: -1; /* Send background to the back */
+}
+
+.spline-background iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none; /* Remove border */
+}
+
+/* Loading Animation Styles */
+#loading-screen h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    animation: fadeIn 2s ease-in-out; /* Fade in animation */
+}
+
+.loader {
+    border: 8px solid rgba(255, 255, 255, 0.1);
+    border-top: 8px solid #00bfff; /* Brighter blue color */
+    border-radius: 50%;
+    width: 60px; /* Size of the loader */
+    height: 60px;
+    animation: spin 1s linear infinite; /* Spin animation */
+}
+
+/* Loading Animation Keyframes */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.9); /* Dark transparent background */
+    position: relative;
+    z-index: 10; /* Ensure header is above other content */
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+/* Navigation Styles */
+.nav-tabs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.nav-tabs li {
+    margin-left: 20px; /* Space between tabs */
+}
+
+.nav-tabs a {
+    text-decoration: none;
+    color: #fff; /* White text */
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-tabs a:hover {
+    color: #00bfff; /* Highlight color on hover */
+}
+
+/* Hero Section Styles */
+#hero {
+    text-align: center;
+    padding: 40px 20px; /* Padding around the section */
+}
+
+#hero h2 {
+    font-size: 2.5rem;
+    margin: 20px 0; /* Margin around heading */
+}
+
+#hero p {
+    font-size: 1.2rem;
+    margin: 20px 0; /* Margin around paragraph */
+}
+
+.explore-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #00bfff; /* Button color */
+    color: #fff; /* White text */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.explore-btn:hover {
+    background-color: #007acc; /* Darker blue on hover */
+}
+
+/* Section Styles */
+section {
+    padding: 40px 20px; /* Padding around sections */
+    text-align: center; /* Center text */
+}
+
+section h2 {
+    font-size: 2rem; /* Heading size */
+    margin: 20px 0; /* Margin around heading */
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.9); /* Dark transparent background */
+}
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black; /* Change to your preferred background color */
+    color: white;
+    z-index: 1000;
+}
+
+.progress-bar {
+    width: 40%; /* Adjusted width for a smaller bar */
+    height: 8px; /* Adjusted height for a slimmer bar */
+    background-color: rgba(255, 255, 255, 0.3); /* Light background for contrast */
+    border-radius: 5px; /* Rounded edges for a modern look */
+    overflow: hidden;
+    margin-top: 20px; /* Space above the progress bar */
+}
+
+.progress {
+    height: 100%;
+    width: 0;
+    background-color: white; /* White loading bar */
+    transition: width 0.3s ease;
+}
+
+/* Toronto Text Styles */
+#location-text {
+    font-size: 3rem; /* Adjusted font size */
+    margin-top: 100px; /* Space above the text */
+    opacity: 0; /* Start with hidden text */
+    animation: easeIn 4s forwards 0.5s; /* Apply animation with a delay */
+    text-align: center; /* Center the text */
+}
+
+/* Animation Keyframes */
+@keyframes easeIn {
+    50% { opacity: 0; transform: translateY(20px); } /* Start hidden and below */
+    100% { opacity: 1; transform: translateY(0); } /* Fade in and move to position */
+}

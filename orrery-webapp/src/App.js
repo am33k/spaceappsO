@@ -1,16 +1,16 @@
-// src/App.js
-import React from "react";
-import SolarSystem from "./SolarSystem";
-import "./App.css";
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HomePage from './HomePage';  // Import the HomePage component
+import Orrery from './SolarSystem'; // Import the orrery component
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Interactive Orrery Web App</h1>
-      </header>
-      <SolarSystem />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/orrery" element={<Orrery />} />
+      </Routes>
+    </Router>
   );
 }
 
