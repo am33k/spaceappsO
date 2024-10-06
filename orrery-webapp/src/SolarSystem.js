@@ -1,10 +1,10 @@
-import React, { useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Stars, Line } from "@react-three/drei";
-import * as THREE from "three";
+import React, { useState } from "react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Stars } from "@react-three/drei";
 import { useNavigate } from "react-router-dom";
 import Planet from "./Planet";
-import Asteroid from "./Asteroid"; // Added back the Asteroid component
+import Asteroid from "./Asteroid";
+import * as THREE from "three";  // Import THREE for direct usage in the code
 
 // Define the planet information
 const planetsInfo = {
@@ -51,11 +51,12 @@ const SolarSystem = () => {
   const togglePause = () => setIsPaused(!isPaused);
   const toggleNEAs = () => setShowNEAs(!showNEAs); // Toggle NEA visibility
   const togglePHAs = () => setShowPHAs(!showPHAs); // Toggle PHA visibility
-  const handlePlanetClick = (planetName) => setSelectedPlanet(planetsInfo[planetName]);
+  const handlePlanetClick = (planetName) => navigate(`/planet/${planetName}`); // Navigate to planet's info page
   const handleBackToHomeClick = () => navigate("/");
 
   return (
     <div style={{ height: "100vh", position: "relative" }}>
+      {/* Control Buttons */}
       <button onClick={toggleOrbits} style={{ ...buttonStyles, left: 10 }}>
         {showOrbits ? "Hide Orbit Paths" : "Show Orbit Paths"}
       </button>
@@ -76,23 +77,15 @@ const SolarSystem = () => {
         Back to Home Page
       </button>
 
-      {selectedPlanet && (
-        <div style={{ ...infoPanelStyles }}>
-          <h2>{selectedPlanet.name}</h2>
-          <p>Size: {selectedPlanet.size}</p>
-          <p>Distance from Sun: {selectedPlanet.distance}</p>
-          <p>Orbital Period: {selectedPlanet.orbitalPeriod}</p>
-        </div>
-      )}
-
       <Canvas camera={{ position: [0, 100, 0], fov: 75 }}>
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} />
         <Stars />
 
+        {/* The Sun with emissive property */}
         <mesh position={[0, 0, 0]}>
           <sphereGeometry args={[4, 32, 32]} />
-          <meshStandardMaterial color="yellow" />
+          <meshStandardMaterial emissive="yellow" emissiveIntensity={3} color="yellow" />
         </mesh>
 
         {Object.values(planetsInfo).map((planet) => (
@@ -114,13 +107,13 @@ const SolarSystem = () => {
               semiMinorAxis={planet.semiMinorAxis}
               orbitSpeed={planet.orbitSpeed}
               name={planet.name}
-              onClick={handlePlanetClick}
+              onClick={handlePlanetClick} // Navigate to planet page on click
               isPaused={isPaused}
             />
           </>
         ))}
 
-        {/* Conditionally render NEAs */}
+        {/* Render NEAs based on toggle */}
         {showNEAs && (
           <>
             <Asteroid radius={0.05} color="orange" orbitRadius={25} orbitSpeed={2} name="NEA 1" isPaused={isPaused} />
@@ -129,7 +122,7 @@ const SolarSystem = () => {
           </>
         )}
 
-        {/* Conditionally render PHAs */}
+        {/* Render PHAs based on toggle */}
         {showPHAs && (
           <>
             <Asteroid radius={0.08} color="purple" orbitRadius={60} orbitSpeed={0.5} name="PHA 1" isPaused={isPaused} />
@@ -153,17 +146,6 @@ const buttonStyles = {
   cursor: "pointer",
   position: "absolute",
   top: 10,
-};
-
-const infoPanelStyles = {
-  position: "absolute",
-  top: 10,
-  right: 10,
-  padding: "20px",
-  backgroundColor: "rgba(0, 0, 0, 0.8)",
-  color: "white",
-  borderRadius: "10px",
-  zIndex: 10,
 };
 
 export default SolarSystem;
