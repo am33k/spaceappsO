@@ -4,9 +4,8 @@ import { OrbitControls, Stars } from "@react-three/drei";
 import { useNavigate } from "react-router-dom";
 import Planet from "./Planet";
 import Asteroid from "./Asteroid";
-import * as THREE from "three";  // Import THREE for direct usage in the code
+import * as THREE from "three";
 
-// Define the planet information
 const planetsInfo = {
   Mercury: { name: "Mercury", semiMajorAxis: 8, semiMinorAxis: 6.4, color: "gray", orbitSpeed: 4.15 },
   Venus: { name: "Venus", semiMajorAxis: 12, semiMinorAxis: 10.3, color: "orange", orbitSpeed: 1.62 },
@@ -18,7 +17,6 @@ const planetsInfo = {
   Neptune: { name: "Neptune", semiMajorAxis: 85, semiMinorAxis: 76, color: "darkblue", orbitSpeed: 0.006 },
 };
 
-// OrbitLine Component
 function OrbitLine({ semiMajorAxis, semiMinorAxis, color = "white" }) {
   const points = [];
   const segments = 64;
@@ -42,21 +40,20 @@ function OrbitLine({ semiMajorAxis, semiMinorAxis, color = "white" }) {
 const SolarSystem = () => {
   const [showOrbits, setShowOrbits] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
-  const [showNEAs, setShowNEAs] = useState(true); // Toggle NEA visibility
-  const [showPHAs, setShowPHAs] = useState(true); // Toggle PHA visibility
+  const [showNEAs, setShowNEAs] = useState(true);
+  const [showPHAs, setShowPHAs] = useState(true);
   const [selectedPlanet, setSelectedPlanet] = useState(null);
   const navigate = useNavigate();
 
   const toggleOrbits = () => setShowOrbits(!showOrbits);
   const togglePause = () => setIsPaused(!isPaused);
-  const toggleNEAs = () => setShowNEAs(!showNEAs); // Toggle NEA visibility
-  const togglePHAs = () => setShowPHAs(!showPHAs); // Toggle PHA visibility
-  const handlePlanetClick = (planetName) => navigate(`/planet/${planetName}`); // Navigate to planet's info page
+  const toggleNEAs = () => setShowNEAs(!showNEAs);
+  const togglePHAs = () => setShowPHAs(!showPHAs);
+  const handlePlanetClick = (planetName) => navigate(`/planet/${planetName}`);
   const handleBackToHomeClick = () => navigate("/");
 
   return (
     <div style={{ height: "100vh", position: "relative" }}>
-      {/* Control Buttons */}
       <button onClick={toggleOrbits} style={{ ...buttonStyles, left: 10 }}>
         {showOrbits ? "Hide Orbit Paths" : "Show Orbit Paths"}
       </button>
@@ -82,7 +79,6 @@ const SolarSystem = () => {
         <pointLight position={[10, 10, 10]} />
         <Stars />
 
-        {/* The Sun with emissive property */}
         <mesh position={[0, 0, 0]}>
           <sphereGeometry args={[4, 32, 32]} />
           <meshStandardMaterial emissive="yellow" emissiveIntensity={3} color="yellow" />
@@ -107,13 +103,12 @@ const SolarSystem = () => {
               semiMinorAxis={planet.semiMinorAxis}
               orbitSpeed={planet.orbitSpeed}
               name={planet.name}
-              onClick={handlePlanetClick} // Navigate to planet page on click
+              onClick={handlePlanetClick}
               isPaused={isPaused}
             />
           </>
         ))}
 
-        {/* Render NEAs based on toggle */}
         {showNEAs && (
           <>
             <Asteroid radius={0.05} color="orange" orbitRadius={25} orbitSpeed={2} name="NEA 1" isPaused={isPaused} />
@@ -122,7 +117,6 @@ const SolarSystem = () => {
           </>
         )}
 
-        {/* Render PHAs based on toggle */}
         {showPHAs && (
           <>
             <Asteroid radius={0.08} color="purple" orbitRadius={60} orbitSpeed={0.5} name="PHA 1" isPaused={isPaused} />

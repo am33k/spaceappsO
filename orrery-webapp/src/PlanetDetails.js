@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"; // To get the planet name from the URL
+// not fully implemented yet
+
 
 const PlanetDetails = () => {
   const { planetName } = useParams(); // Get the planet name from the URL params
@@ -9,7 +11,7 @@ const PlanetDetails = () => {
   const planetsData = {
     Mercury: {
       name: "Mercury",
-      image: "/images/mercury.jpg", // Replace with actual image paths
+      image: "/images/mercury.jpg", 
       description: "Mercury is the smallest planet in our solar system and closest to the Sun.",
     },
     Venus: {
@@ -27,13 +29,13 @@ const PlanetDetails = () => {
       image: "/images/mars.jpg",
       description: "Mars is the red planet known for having the tallest mountain in the solar system.",
     },
-    // Add more planets here...
+ 
   };
 
-  // Fetch real-time data (this is where you would integrate an API)
+  
   useEffect(() => {
     const fetchRealTimeData = async () => {
-      // Simulated real-time data fetch (you can use an actual API here)
+      
       const data = await fetch(`https://api.example.com/planet/${planetName}`);
       const result = await data.json();
       setRealTimeData(result);
