@@ -203,3 +203,29 @@ footer {
     50% { opacity: 0; transform: translateY(20px); } /* Start hidden and below */
     100% { opacity: 1; transform: translateY(0); } /* Fade in and move to position */
 }
+
+#about-challenge {
+    display: flex; /* Use flexbox for side-by-side layout */
+    justify-content: space-between; /* Space between boxes */
+    margin: 20px; /* Margin around the section */
+}
+
+.info-box {
+    background-color: black; /* Background color of the boxes */
+    color: white;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(174, 174, 178, 0.2); /* Subtle box shadow */
+    padding: 20px; /* Inner padding */
+    width: calc(50% - 10px); /* Width of each box with some space */
+    margin: 5px; /* Margin between boxes */
+    transition: box-shadow 0.3s ease; /* Smooth shadow transition */
+}
+
+.info-box:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Shadow on hover for effect */
+}
+
+h2 {
+    font-size: 1.5em; /* Size of the section headings */
+    margin-bottom: 10px; /* Space below headings */
+}
